@@ -1172,9 +1172,8 @@ class BaseFCGIServer(object):
             try:
                 result = self.application(environ, start_response)
                 try:
-                    for data in result:
-                        if data:
-                            write(data)
+                    if result:
+                        write(result)
                     if not headers_sent:
                         write(b'') # in case body was empty
                 finally:
